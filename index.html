@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koundinya Vinnakota — Solutions Engineer</title>
+  <meta name="description" content="Portfolio of Koundinya Vinnakota: Solutions Engineer — PLC/SCADA, EVSE, Embedded, and ADAS validation." />
+  
+  
+<style>
+  :root{
+    --bg:#ffffff; --panel:#ffffff; --muted:#475569; --text:#0b1220; --brand:#1e40af; --brand-2:#1d4ed8;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:#f7fafc;color:var(--text);font:17px/1.7 Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+  .container{max-width:1040px;margin:0 auto;padding:24px}
+  a{color:var(--brand-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header.site{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(2,6,23,.06)}
+  nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+  .nav-left{display:flex;gap:12px;align-items:center}
+  .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#eaf2ff;font-weight:800}
+  .nav-links a{padding:8px 10px;border-radius:10px}
+  .nav-links a:hover{background:rgba(2,6,23,.05)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid rgba(2,6,23,.12);border-radius:12px;background:var(--panel);cursor:pointer}
+  .btn:hover{filter:brightness(1.04)}
+  .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#f8fafc;font-weight:600}
+  .grid{display:grid;gap:20px}
+  .hero{padding:32px 0 8px;display:grid;gap:20px;grid-template-columns:1.1fr .9fr}
+  .card{background:var(--panel);border:1px solid rgba(2,6,23,.08);border-radius:16px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,.06)}
+  .tag{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(2,6,23,.12);padding:6px 10px;border-radius:999px;margin:6px 6px 0 0;background:rgba(2,6,23,.02)}
+  .chips{display:flex;flex-wrap:wrap}
+  .h1{font-size:clamp(28px,3.8vw,42px);line-height:1.2;margin:6px 0}
+  .subtitle{color:var(--muted)}
+  .badges{display:flex;gap:10px;flex-wrap:wrap}
+  .section{margin:28px 0}
+  .section h2{margin:0 0 10px;font-size:24px}
+  .timeline{display:grid;gap:14px}
+  .item{display:grid;gap:8px;padding:16px;border:1px solid rgba(2,6,23,.08);border-radius:14px}
+  .muted{color:var(--muted)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .search{flex:1;display:flex;border:1px solid rgba(2,6,23,.12);border-radius:12px;align-items:center;padding:6px 10px;background:rgba(2,6,23,.02)}
+  .search input{flex:1;background:transparent;border:0;outline:0;color:var(--text);padding:6px}
+  .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(2,6,23,.12);background:var(--panel);cursor:pointer}
+  .pill[aria-pressed="true"]{background:rgba(29,78,216,.10);border-color:rgba(29,78,216,.35)}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .skill-card h3{margin:.2rem 0}
+  .footer{margin:44px 0 64px;text-align:center;color:var(--muted)}
+  .toast{position:fixed;right:16px;bottom:16px;background:var(--panel);border:1px solid rgba(2,6,23,.12);padding:10px 14px;border-radius:12px;opacity:0;transform:translateY(20px);transition:.3s}
+  .toast.show{opacity:1;transform:translateY(0)}
+  .photo-wrap{display:grid;gap:10px;justify-items:center}
+  .photo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;border:1px solid rgba(2,6,23,.08)}
+  @media (max-width:880px){ .hero{grid-template-columns:1fr} }
+
+/* Emphasize Experience section */
+.exp-title{font-size:clamp(28px,4.5vw,48px);line-height:1.15;margin:0}
+.exp-sub{margin:6px 0 14px}
+.timeline.prominent .item{border-left:4px solid rgba(29,78,216,.35);padding-left:14px;background:rgba(29,78,216,.04)}
+.timeline.prominent .item strong{font-size:18px}
+
+
+/* Single-column projects layout */
+.projects-single .projects-list{display:grid;gap:16px;grid-template-columns:1fr}
+.projects-single .project-card h3{margin:0 0 6px;font-size:20px}
+.projects-single .project-card .chips{margin-top:6px}
+
+</style>
+
+
+</head>
+<body>
+  <header class="site">
+    <div class="container">
+      <nav aria-label="Primary">
+        <div class="nav-left">
+          <div class="logo" aria-hidden>KV</div>
+          <strong>Koundinya Vinnakota</strong>
+          <div class="nav-links" role="menubar">
+            <a role="menuitem" href="#about">About</a>
+            <a role="menuitem" href="#experience">Experience</a>
+            <a role="menuitem" href="#skills">Skills</a>
+            <a role="menuitem" href="#projects">Projects</a>
+            <a role="menuitem" href="#education">Education</a>
+            <a role="menuitem" href="#contact">Contact</a>
+          </div>
+        </div>
+        <div class="row">
+          <a class="btn" href="Resume.pdf" target="_blank" rel="noreferrer">📄 Resume</a>
+          <a class="btn" id="printBtn" href="#">🖨️ Print</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+<section class="hero">
+  <div class="card">
+    <span class="tag">Solutions Engineer</span>
+    <h1 class="h1">Hi, I'm <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Koundinya Vinnakota</span>.</h1>
+    <p class="subtitle">Solutions Engineer passionate about power systems, automation, and AI‑driven tooling. I turn complex hardware–software interfaces into reliable, production‑ready solutions.</p>
+    <div class="badges">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn" href="https://www.linkedin.com/in/koundinyav" target="_blank" rel="noreferrer">↗ LinkedIn</a>
+      <a class="btn" href="https://github.com/koundinyavinnakota" target="_blank" rel="noreferrer">↗ GitHub</a>
+      
+      
+    </div>
+  </div>
+  <div class="card">
+    <div class="photo-wrap">
+      <img class="photo" src="IMG_2705.jpeg" alt="Portrait of Koundinya Vinnakota" />
+    </div>
+  </div>
+</section>
+
+
+    <section id="about" class="section">
+      <div class="card">
+        <h2>About</h2>
+        <p>I'm an engineer who loves the seam where software meets hardware. My recent focus is end‑to‑end validation of EV charging systems and PLC‑driven automation. I enjoy building clean tools that make testing faster, safer, and traceable.</p>
+      </div>
+    </section>
+    
+<section id="experience" class="section">
+  <div class="exp-header">
+    <h2 class="exp-title">Experience</h2>
+    
+  </div>
+  <div class="timeline prominent">
+    <article class="item">
+      <div class="row">
+        <strong>Siemens — Components Application Engineer</strong>
+        <span class="muted">Peachtree Corner, GA · Sep 2025 – Present</span>
+      </div>
+      <ul>
+        <li>Pre‑sales SME for Circuit Protection &amp; Controls (CP&amp;C); translate requirements into applications that accelerate adoption.</li>
+        <li>Collaborate with R&amp;D, Product Management, and Sales to influence roadmaps and safety compliance.</li>
+        <li>Provide remote/on‑site technical support; troubleshoot field installs and returned products to improve reliability.</li>
+        <li>Author application guides and white papers to enable seamless customer integrations.</li>
+        <li>Deliver trainings for internal/external teams; create demos and support trade‑show engagements.</li>
+        <li>Contribute to standards committees to shape global requirements; ensure Siemens products meet/lead standards.</li>
+        <li>Apply PLC (TIA Portal), C programming, and industrial protocols (Modbus, Profinet, Profibus, Ethernet/IP) for advanced controls.</li>
+        <li>Use KPI‑driven insights to monitor field performance and guide iterative product improvements.</li>
+      </ul>
+    </article>
+    <article class="item">
+      <div class="row">
+        <strong>Siemens — R&amp;D System Test Engineer</strong>
+        <span class="muted">Peachtree Corner, GA · Sep 2023 – Sep 2025</span>
+      </div>
+      <ul>
+        <li>Led system testing and product validation for SiCharge UC UL across development, product care, and integration.</li>
+        <li>Owned interoperability testing and OCPP backend integrations with EV service providers and cloud platforms.</li>
+        <li>Executed UL type testing and authored test plans for SiCharge UC UL accessories to ensure full product validation.</li>
+        <li>Built the Test Lab from the ground up and developed automated frameworks to increase throughput and reduce manual cycles.</li>
+        <li>Partnered with hardware, firmware, and cloud teams for system‑level debugging and verification of multi‑backend support.</li>
+        <li>Contributed to testing of additional EVSE and power distribution products to expand portfolio coverage.</li>
+      </ul>
+    </article>
+    <article class="item">
+      <div class="row">
+        <strong>Magna Electronics — System Engineer</strong>
+        <span class="muted">Auburn Hills, MI · May 2023 – Sep 2023</span>
+      </div>
+      <ul>
+        <li>Designed and executed system/performance tests for ADAS features (Blind Spot Monitoring, Lane‑Keeping Assistance).</li>
+        <li>Built test architectures for real‑world and simulated validation, including sensor calibration and detection accuracy.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+    <section id="skills" class="section">
+      <div class="toolbar">
+        <h2>Skills</h2>
+        <div class="row" role="toolbar" aria-label="Skill filters">
+          <button class="pill" data-skill-filter="all" aria-pressed="true">All</button>
+          <button class="pill" data-skill-filter="PLC">PLC & SCADA</button>
+          <button class="pill" data-skill-filter="Programming">Programming</button>
+          <button class="pill" data-skill-filter="Testing">Testing & QA</button>
+          <button class="pill" data-skill-filter="Networking">Networking</button>
+        </div>
+      </div>
+      <div class="skills-grid" id="skillsGrid">
+        <div class="card skill-card" data-group="PLC"><h3>PLC & Automation</h3><p class="muted">Siemens S7‑1500, TIA Portal, WinCC Unified, SCADA/HMI, Ladder, SCL</p></div>
+        <div class="card skill-card" data-group="Programming"><h3>Programming</h3><p class="muted">Python, C++, Java, Shell, MATLAB</p></div>
+        <div class="card skill-card" data-group="Testing"><h3>Testing & Validation</h3><p class="muted">GTest/GMock, TestStand, LabVIEW, Jira, Git, TeamCenter</p></div>
+        <div class="card skill-card" data-group="Networking"><h3>Protocols</h3><p class="muted">Modbus RTU/TCP, OPC UA, Profibus, RS‑485, TCP/IP</p></div>
+        <div class="card skill-card" data-group="Networking"><h3>OS & Networking</h3><p class="muted">Windows Server, Linux, VLAN/IP setup, remote debugging</p></div>
+        <div class="card skill-card" data-group="Programming"><h3>Tooling</h3><p class="muted">Docker, Embedded scripting, Automation frameworks</p></div>
+      </div>
+    </section>
+    
+<section id="projects" class="section projects-single">
+  <div class="toolbar">
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-list">
+    
+    <article class="card project-card">
+      <h3>Autonomous Warehouse Inspection (Turtlebot3, ROS2 Nav2)</h3>
+      <p class="muted">Built an autonomous warehouse inspection module using Cartographer mapping and Nav2 path planning. Created a custom warehouse with ArUco ‘defect’ tags and reported abnormalities to the operator.</p>
+      <div class="chips"><span class='tag'>C++</span><span class='tag'>ROS2</span><span class='tag'>Nav2</span><span class='tag'>Cartographer</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Human Detection & Tracking (YOLOv3 + OpenCV)</h3>
+      <p class="muted">Implemented human detection and tracking with YOLOv3 and OpenCV. Added NMS post‑processing and localized detections in the robot frame; CI with AIP/test‑driven methods.</p>
+      <div class="chips"><span class='tag'>C++</span><span class='tag'>OpenCV</span><span class='tag'>YOLOv3</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Monocular Visual SLAM</h3>
+      <p class="muted">Achieved SLAM with a monocular camera. Calibrated via Zhang’s technique; used ORB features and bundle adjustment to estimate camera pose and depth.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>SLAM</span><span class='tag'>ORB</span><span class='tag'>Calibration</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>8×3 Puzzle Solver (BFS)</h3>
+      <p class="muted">Programmed BFS with backtracking via parent/child relations; generated solution path and visualized it with NumPy.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>Search</span><span class='tag'>BFS</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Path Planning with Dijkstra</h3>
+      <p class="muted">Implemented Dijkstra’s algorithm with semi‑algebraic obstacle models; visualized motion using OpenCV and computed optimal paths.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>OpenCV</span><span class='tag'>Planning</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Maze Solver (DFS, C++)</h3>
+      <p class="muted">Navigated a maze with DFS using OOP design; leveraged stacks/vectors for efficient traversal and visualized the run in a simulator.</p>
+      <div class="chips"><span class='tag'>C++</span><span class='tag'>DFS</span><span class='tag'>OOP</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Urban Search & Rescue (Multi‑Robot)</h3>
+      <p class="muted">Coordinated two Turtlebots for exploration and victim rescue. Used ROS for communication and Move Base for navigation.</p>
+      <div class="chips"><span class='tag'>C++</span><span class='tag'>ROS</span><span class='tag'>Gazebo</span><span class='tag'>RViz</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>4‑Wheeled Autonomous Robot (Raspberry Pi)</h3>
+      <p class="muted">Integrated ultrasonic sensors and IMU on a Pi; implemented perception/avoidance in OpenCV and a framework for localization.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>OpenCV</span><span class='tag'>ROS</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Delivery Robot Simulation (RRT*)</h3>
+      <p class="muted">Simulated multi‑stop delivery on Turtlebot with RRT* and a custom Gazebo world; visualized half‑plane paths with RViz.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>RRT*</span><span class='tag'>Gazebo</span><span class='tag'>RViz</span><span class='tag'>ROS</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Fetch Mobile Manipulator (MoveIt)</h3>
+      <p class="muted">Planned motion for a 7‑DoF manipulator; validated IK/FK and achieved ~40% faster pick‑and‑place cycles in simulation.</p>
+      <div class="chips"><span class='tag'>Python</span><span class='tag'>MoveIt</span><span class='tag'>RViz</span><span class='tag'>ROS</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>Malaria Detection (ResNet)</h3>
+      <p class="muted">Trained ResNet variants (18/34/50) in PyTorch with augmentation, dropout and L2 regularization; reached ~96% test accuracy.</p>
+      <div class="chips"><span class='tag'>PyTorch</span><span class='tag'>CUDA</span><span class='tag'>ResNet</span></div>
+    </article>
+    
+    <article class="card project-card">
+      <h3>AR Tag Detection & Overlay</h3>
+      <p class="muted">Detected AprilTags via homography and bit‑level orientation; applied morphological filtering and overlaid custom images onto tags.</p>
+      <div class="chips"><span class='tag'>OpenCV</span><span class='tag'>Homography</span><span class='tag'>AprilTag</span></div>
+    </article>
+    
+  </div>
+</section>
+
+    <section id="education" class="section">
+      <div class="card">
+        <h2>Education & Certifications</h2>
+        <ul>
+          <li><strong>M.Eng, Robotics</strong> — University of Maryland, College Park
+            <span class="muted"> · Robot Modeling, Control Systems, Autonomous Robotics, ML, SW Dev for Robotics</span>
+          </li>
+          <li><strong>B.Tech, Mechanical Engineering</strong> — JNTU, India
+            <span class="muted"> </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <div class="card">
+        <h2>Contact</h2>
+        <p class="muted">Open to roles in test/validation, automation, and embedded tooling. For quickest response, email me.</p>
+        <div class="badges">
+          <a class="btn primary" href="mailto:koundinya.vinnakota@gmail.com?subject=Hello%20Koundinya">Email Me</a>
+          <a class="btn" href="tel:+12407043580">Call</a>
+        </div>
+      </div>
+    </section>
+    <p class="footer">© <span id="year"></span> Koundinya Vinnakota ·  <a href="#" id="toTop">Back to top</a></p>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied email to clipboard</div>
+  <script>
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) root.setAttribute('data-theme', saved);
+      const mode = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      toggle.setAttribute('aria-pressed', String(mode==='dark'));
+      toggle.textContent = mode==='dark' ? '🌓 Theme' : '🌞 Theme';
+    };
+    toggle.addEventListener('click', ()=>{
+      const isLight = root.getAttribute('data-theme') === 'light';
+      root.setAttribute('data-theme', isLight? 'dark':'light');
+    });
+    document.getElementById('printBtn').addEventListener('click', (e)=>{e.preventDefault(); window.print();});
+    document.getElementById('toTop').addEventListener('click', (e)=>{e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'});});
+    const toast = document.getElementById('toast');
+    document.getElementById('copyEmail').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText('koundinya.vinnakota@gmail.com');
+        toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1400);
+      }catch{ alert('Email: koundinya.vinnakota@gmail.com'); }
+    });
+      e.preventDefault();
+      const url = './Koundinya_Vinnakota_Resume.pdf';
+      fetch(url,{method:'HEAD'}).then(r=>{
+        if(r.ok) window.location.href=url; else alert('Add your resume file named "Koundinya_Vinnakota_Resume.pdf" to the repo root.');
+      }).catch(()=>alert('Add your resume file named "Koundinya_Vinnakota_Resume.pdf" to the repo root.'))
+    });
+    
+    });
+    const pills = [...document.querySelectorAll('[data-skill-filter]')];
+    const cards = [...document.querySelectorAll('#skillsGrid .skill-card')];
+    pills.forEach(p=>p.addEventListener('click',()=>{
+      const sel = p.getAttribute('data-skill-filter');
+      pills.forEach(x=>x.setAttribute('aria-pressed','false'));
+      p.setAttribute('aria-pressed','true');
+      cards.forEach(c=>{
+        if(sel==='all') c.style.display='';
+        else c.style.display = c.dataset.group===sel ? '' : 'none';
+      });
+    }));
+    const projectGrid = document.getElementById('projectGrid');
+    document.getElementById('addProject').addEventListener('click', ()=>{
+      const title = prompt('Project title'); if(!title) return;
+      const desc = prompt('Short description');
+      const tags = prompt('Comma-separated tags (e.g., Python, PLC, EVSE)')||'';
+      const el = document.createElement('div');
+      el.className='card project-card';
+      el.dataset.tags = tags;
+      el.innerHTML = `<h3>${title}</h3><p class="muted">${desc||''}</p><div class="chips">${tags.split(',').filter(Boolean).map(t=>`<span class='tag'>${t.trim()}</span>`).join('')}</div>`;
+      projectGrid.prepend(el);
+      saveProjects();
+    });
+    const projSearch = document.getElementById('projSearch');
+    projSearch.addEventListener('input', ()=>{
+      const q = projSearch.value.toLowerCase();
+      [...document.querySelectorAll('.project-card')].forEach(el=>{
+        const text = (el.innerText + ' ' + (el.dataset.tags||'')).toLowerCase();
+        el.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+    function saveProjects(){
+      const data=[...document.querySelectorAll('.project-card')].map(el=>({
+        title: el.querySelector('h3')?.innerText.trim(),
+        description: el.querySelector('p')?.innerText.trim(),
+        tags: (el.dataset.tags||'').split(',').map(s=>s.trim()).filter(Boolean)
+      }));
+      localStorage.setItem('kv-projects', JSON.stringify(data));
+    }
+    function loadProjects(){
+      const raw = localStorage.getItem('kv-projects'); if(!raw) return;
+      try{ JSON.parse(raw).reverse().forEach(p=>{
+        const el=document.createElement('div'); el.className='card project-card'; el.dataset.tags=(p.tags||[]).join(',');
+        el.innerHTML = `<h3>${p.title}</h3><p class="muted">${p.description||''}</p><div class="chips">${(p.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
+        projectGrid.prepend(el);
+      })}catch{}
+    }
+    loadProjects();
+    document.getElementById('exportProjects').addEventListener('click', ()=>{
+      const data = localStorage.getItem('kv-projects')||'[]';
+      const blob = new Blob([data],{type:'application/json'});
+      const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='projects.json'; a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    });
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+  // Photo upload + persistence
+  const imgEl = document.getElementById('profilePhoto');
+
+  function loadPhoto(){
+    if(data){ imgEl.src = data; }
+  }
+  loadPhoto();
+
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = ()=>{
+        const file = input.files?.[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          imgEl.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    });
+  }
+
+      imgEl.src = '';
+    });
+  }
+  </script>
+</body>
+</html>
