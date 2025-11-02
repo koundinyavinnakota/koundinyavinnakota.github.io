@@ -73,6 +73,9 @@
 .projects-single .projects-list{display:grid;gap:16px;grid-template-columns:1fr}
 .projects-single .project-card h3{margin:0 0 6px;font-size:20px}
 .projects-single .project-card .chips{margin-top:6px}
+.nav-links a.active { background: rgba(29,78,216,.10); border-radius: 10px; }
+html { scroll-behavior: smooth; }
+
 
 </style>
 
@@ -309,117 +312,52 @@
   </main>
   <div id="toast" class="toast" role="status" aria-live="polite">Copied email to clipboard</div>
   <script>
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if(saved) root.setAttribute('data-theme', saved);
-      const mode = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-      toggle.setAttribute('aria-pressed', String(mode==='dark'));
-      toggle.textContent = mode==='dark' ? '🌓 Theme' : '🌞 Theme';
-    };
-    toggle.addEventListener('click', ()=>{
-      const isLight = root.getAttribute('data-theme') === 'light';
-      root.setAttribute('data-theme', isLight? 'dark':'light');
-    });
-    document.getElementById('printBtn').addEventListener('click', (e)=>{e.preventDefault(); window.print();});
-    document.getElementById('toTop').addEventListener('click', (e)=>{e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'});});
-    const toast = document.getElementById('toast');
-    document.getElementById('copyEmail').addEventListener('click', async ()=>{
-      try{
-        await navigator.clipboard.writeText('koundinya.vinnakota@gmail.com');
-        toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),1400);
-      }catch{ alert('Email: koundinya.vinnakota@gmail.com'); }
-    });
-      e.preventDefault();
-      const url = './Koundinya_Vinnakota_Resume.pdf';
-      fetch(url,{method:'HEAD'}).then(r=>{
-        if(r.ok) window.location.href=url; else alert('Add your resume file named "Koundinya_Vinnakota_Resume.pdf" to the repo root.');
-      }).catch(()=>alert('Add your resume file named "Koundinya_Vinnakota_Resume.pdf" to the repo root.'))
-    });
-    
-    });
-    const pills = [...document.querySelectorAll('[data-skill-filter]')];
-    const cards = [...document.querySelectorAll('#skillsGrid .skill-card')];
-    pills.forEach(p=>p.addEventListener('click',()=>{
-      const sel = p.getAttribute('data-skill-filter');
-      pills.forEach(x=>x.setAttribute('aria-pressed','false'));
-      p.setAttribute('aria-pressed','true');
-      cards.forEach(c=>{
-        if(sel==='all') c.style.display='';
-        else c.style.display = c.dataset.group===sel ? '' : 'none';
-      });
-    }));
-    const projectGrid = document.getElementById('projectGrid');
-    document.getElementById('addProject').addEventListener('click', ()=>{
-      const title = prompt('Project title'); if(!title) return;
-      const desc = prompt('Short description');
-      const tags = prompt('Comma-separated tags (e.g., Python, PLC, EVSE)')||'';
-      const el = document.createElement('div');
-      el.className='card project-card';
-      el.dataset.tags = tags;
-      el.innerHTML = `<h3>${title}</h3><p class="muted">${desc||''}</p><div class="chips">${tags.split(',').filter(Boolean).map(t=>`<span class='tag'>${t.trim()}</span>`).join('')}</div>`;
-      projectGrid.prepend(el);
-      saveProjects();
-    });
-    const projSearch = document.getElementById('projSearch');
-    projSearch.addEventListener('input', ()=>{
-      const q = projSearch.value.toLowerCase();
-      [...document.querySelectorAll('.project-card')].forEach(el=>{
-        const text = (el.innerText + ' ' + (el.dataset.tags||'')).toLowerCase();
-        el.style.display = text.includes(q) ? '' : 'none';
-      });
-    });
-    function saveProjects(){
-      const data=[...document.querySelectorAll('.project-card')].map(el=>({
-        title: el.querySelector('h3')?.innerText.trim(),
-        description: el.querySelector('p')?.innerText.trim(),
-        tags: (el.dataset.tags||'').split(',').map(s=>s.trim()).filter(Boolean)
-      }));
-      localStorage.setItem('kv-projects', JSON.stringify(data));
-    }
-    function loadProjects(){
-      const raw = localStorage.getItem('kv-projects'); if(!raw) return;
-      try{ JSON.parse(raw).reverse().forEach(p=>{
-        const el=document.createElement('div'); el.className='card project-card'; el.dataset.tags=(p.tags||[]).join(',');
-        el.innerHTML = `<h3>${p.title}</h3><p class="muted">${p.description||''}</p><div class="chips">${(p.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
-        projectGrid.prepend(el);
-      })}catch{}
-    }
-    loadProjects();
-    document.getElementById('exportProjects').addEventListener('click', ()=>{
-      const data = localStorage.getItem('kv-projects')||'[]';
-      const blob = new Blob([data],{type:'application/json'});
-      const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='projects.json'; a.click();
-      setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-    });
-    document.getElementById('year').textContent=new Date().getFullYear();
+  // Print
+  document.getElementById('printBtn')?.addEventListener('click', (e)=>{
+    e.preventDefault(); window.print();
+  });
 
-  // Photo upload + persistence
-  const imgEl = document.getElementById('profilePhoto');
+  // Back to top
+  document.getElementById('toTop')?.addEventListener('click', (e)=>{
+    e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
-  function loadPhoto(){
-    if(data){ imgEl.src = data; }
-  }
-  loadPhoto();
-
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.onchange = ()=>{
-        const file = input.files?.[0];
-        if(!file) return;
-        const reader = new FileReader();
-        reader.onload = ()=>{
-          imgEl.src = reader.result;
-        };
-        reader.readAsDataURL(file);
-      };
-      input.click();
+  // Skills filter
+  const pills = [...document.querySelectorAll('[data-skill-filter]')];
+  const cards = [...document.querySelectorAll('#skillsGrid .skill-card')];
+  pills.forEach(p=>p.addEventListener('click',()=>{
+    const sel = p.getAttribute('data-skill-filter');
+    pills.forEach(x=>x.setAttribute('aria-pressed','false'));
+    p.setAttribute('aria-pressed','true');
+    cards.forEach(c=>{
+      if(sel==='all') c.style.display='';
+      else c.style.display = c.dataset.group===sel ? '' : 'none';
     });
-  }
+  }));
 
-      imgEl.src = '';
+  // Active nav highlight while scrolling
+  const navLinks = [...document.querySelectorAll('nav .nav-links a')];
+  const sections = navLinks
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = '#' + entry.target.id;
+      const link = navLinks.find(a => a.getAttribute('href') === id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+      }
     });
-  }
-  </script>
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+  sections.forEach(s => io.observe(s));
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
